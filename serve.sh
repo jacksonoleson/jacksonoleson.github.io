@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 # Local preview at http://localhost:4000 using Docker (no system Ruby required).
+# Native alternative: sudo apt install ruby-dev build-essential zlib1g-dev,
+# then `bundle install && bundle exec jekyll serve --livereload`.
 set -euo pipefail
 
 cd "$(dirname "$0")"
