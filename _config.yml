@@ -1,3 +1,48 @@
-title: "Stream of conciousness"
-description: "I write technical content, mostly about AI and human psychology"
-theme: jekyll-theme-minimal
+title: Jackson Oleson
+tagline: "Stream of Consciousness"
+description: "I write technical content, mostly about AI and human psychology."
+
+# Shown on the home page. Edit these freely.
+author:
+  name: Jackson Oleson
+  role: "Engineer / Writer"
+  bio: >-
+    I write technical content, mostly about AI and human psychology.
+    Currently digging into the math behind machine learning and what it
+    says about how we think.
+  avatar: /assets/img/avatar.jpg
+  location: ""
+  email: ""
+  github: jacksonoleson
+  linkedin: ""
+  twitter: ""
+
+url: "https://jacksonoleson.github.io"
+baseurl: ""
+
+markdown: kramdown
+kramdown:
+  input: GFM
+  math_engine: mathjax
+  syntax_highlighter: rouge
+
+permalink: /blog/:year/:month/:day/:title/
+
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+  - jekyll-sitemap
+
+defaults:
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: post
+
+exclude:
+  - README.md
+  - Gemfile
+  - Gemfile.lock
+  - serve.sh
+  - vendor

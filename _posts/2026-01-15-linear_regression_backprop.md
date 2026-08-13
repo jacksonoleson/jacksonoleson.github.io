@@ -26,7 +26,7 @@ Let's say we have the following two houses:
 * *House 2: 3000 sq ft, $800k*
 
 <p align="center">
-  <img src="images/two_pts.png" width="400" />
+  <img src="/assets/img/linear_regression_backprop/two_pts.png" width="400" />
 </p>
 
 You might remember how to find the slope of a line given two points in algebra class. Then when the teacher asked: *"what is the value of a house with ___ sq ft..."* you could plug in the size and find the value, assuming that the relationship is completely linear. 
@@ -36,7 +36,7 @@ But what happens when we observe a third point that does not fit this linear rel
 * *House 3: 5000 sq ft, $600k*
 
 <p align="center">
-  <img src="images/three_pts.png" width="400" />
+  <img src="/assets/img/linear_regression_backprop/three_pts.png" width="400" />
 </p>
 
 8th grade math doesn't cut it any more, it is no longer possible to draw a single line through all 3 points. Unfortunately, very few phenomena in the real world take on a perfectly linear relationship, so we need a systematic way to draw a line that 'best fits' not just 3, but potentially hundreds or thousands of data points. By "best fits", what I really mean is "the line that minimizes the sum of the squared distance from the line to each of the points (i.e. the Mean Squared Error, or MSE)." This is the motivation for Ordinary Least Squares Regression (OLS). We want to teach a computer to measure how "wrong" a specific line is, and find the "least wrong" line.
@@ -110,15 +110,19 @@ Here, we are working backwards from the result we want.
 To get $m \cdot x_i$, we need $x_i$ and $m$ to "hit" each other during multiplication.
 To get $b \cdot 1$, we need a "dummy" 1 to "hit" $b$ during multiplication.
 So if we construct a single row $[x_i, 1]$ and multiply it by the column vector $\begin{bmatrix} m \\ b \end{bmatrix}$:
+
 $$
 [x_i, 1] \cdot \begin{bmatrix} m \\ b \end{bmatrix} = (x_i \cdot m) + (1 \cdot b) = mx_i + b
 $$
+
 Boom! We recovered our original line equation.
 When we stack all these rows on top of each other to make the matrix $X$, doing the matrix multiplication $X\beta$ just performs this "row $\cdot$ column" operation $N$ times in parallel, giving us the full list of predictions for every house at once.
 That "column of ones" is the clever trick that lets us treat the bias/intercept ($b$) just like any other weight
 
 ### 1. The Model
+
 We start with the linear model in matrix form:
+
 $$y = X\beta + \epsilon$$
 
 * $y$ is an $n \times 1$ vector of observations.
@@ -127,20 +131,29 @@ $$y = X\beta + \epsilon$$
 * $\epsilon$ is an $n \times 1$ vector of errors.
 
 ### 2. The Objective Function (RSS)
+
 The Residual Sum of Squares (RSS) is the squared norm of the residuals:
+
 $$S(\beta) = \epsilon^T \epsilon$$
+
 $$S(\beta) = (y - X\beta)^T (y - X\beta)$$
 
 ### 3. Expanding the Term
+
 Using the linear-algebriac matrix property $(A - B)^T = A^T - B^T$:
+
 $$S(\beta) = (y^T - \beta^T X^T)(y - X\beta)$$
+
 $$S(\beta) = y^T y - y^T X \beta - \beta^T X^T y + \beta^T X^T X \beta$$
 
 Since $y^T X \beta$ is a scalar ($1 \times 1$), it is equal to its own transpose. Note that $(y^T X \beta)^T = \beta^T X^T y$ -- another property of matrix multiplication. We can combine the middle terms:
+
 $$S(\beta) = y^T y - 2\beta^T X^T y + \beta^T X^T X \beta$$
 
 ### 4. Taking the Derivative
+
 To find the minimum, we take the partial derivative of $S(\beta)$ with respect to $\beta$:
+
 $$\frac{\partial S}{\partial \beta} = \frac{\partial}{\partial \beta} (y^T y - 2\beta^T X^T y + \beta^T X^T X \beta)$$
 
 Using matrix calculus rules:
@@ -148,16 +161,20 @@ Using matrix calculus rules:
 2. $\frac{\partial (\beta^T A \beta)}{\partial \beta} = 2A\beta$
 
 We get:
+
 $$\frac{\partial S}{\partial \beta} = -2X^T y + 2X^T X \beta$$
 
 ### 5. Solving for $\hat{\beta}$
+
 Set the gradient to zero to find the minimum:
 Rearrange to form the **Normal Equations**:
+
 $$-2X^T y + 2X^T X \hat{\beta} = 0$$
 
 $$X^T X \hat{\beta} = X^T y$$
 
 Provided that $(X^T X)$ is non-singular (invertible), we multiply both sides by $(X^T X)^{-1}$:
+
 $$\hat{\beta} = (X^T X)^{-1} X^T y$$
 
 Python libraries like **`scikit-learn`** and others use a similar linear-algebraic approach to solve for the weights directly. It's fast, exact, and doesn't require any "training loops." Let's see it in action...
@@ -188,7 +205,7 @@ plt.show()
 ```
 
 <p align="center">
-  <img src="images/output_cell3.png" width="500" />
+  <img src="/assets/img/linear_regression_backprop/output_cell3.png" width="500" />
 </p>
 
 ```python
@@ -224,13 +241,13 @@ plt.show()
 ```
 
 <p align="center">
-  <img src="images/output_cell6.png" width="500" />
+  <img src="/assets/img/linear_regression_backprop/output_cell6.png" width="500" />
 </p>
 
 #### "***What if I told you that Linear Regression is just a neural network with only one neuron***..."
 
 <p align="center">
-  <img src="images/single_neuron.jpg" width="400" />
+  <img src="/assets/img/linear_regression_backprop/single_neuron.jpg" width="400" />
 </p>
 
 Well, ALMOST... We can see here that besides the sum notation $\Sigma$ and the activation function $f$, our linear equation exactly matches the "cell body".
@@ -604,7 +621,7 @@ plt.show()
 ```
 
 <p align="center">
-  <img src="images/output_cell31.png" width="500" />
+  <img src="/assets/img/linear_regression_backprop/output_cell31.png" width="500" />
 </p>
 
 You might be wondering *If the OLS matrix solution allows us to directly solve for the parameters, why bother with pytorch and backpropagation?* 
