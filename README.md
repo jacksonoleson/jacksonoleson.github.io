@@ -55,18 +55,18 @@ inline in the middle of the paragraph instead of centered on their own line.
 
 ### Images
 
-Each post gets its own folder under `assets/img/`, named after the post slug
+Each post gets its own folder under `assets/images/`, named after the post slug
 (the filename minus the date):
 
 ```
 _posts/2026-01-15-linear_regression_backprop.md
-assets/img/linear_regression_backprop/two_pts.png
+assets/images/linear_regression_backprop/two_pts.png
 ```
 
 Reference them with an absolute path so they resolve from any post URL:
 
 ```markdown
-![Two points](/assets/img/linear_regression_backprop/two_pts.png)
+![Two points](/assets/images/linear_regression_backprop/two_pts.png)
 ```
 
 Images can't live inside `_posts/` itself — Jekyll reads subfolders there as

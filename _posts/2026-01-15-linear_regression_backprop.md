@@ -26,7 +26,7 @@ Let's say we have the following two houses:
 * *House 2: 3000 sq ft, $800k*
 
 <p align="center">
-  <img src="/assets/img/linear_regression_backprop/two_pts.png" width="400" />
+  <img src="/assets/images/linear_regression_backprop/two_pts.png" width="400" />
 </p>
 
 You might remember how to find the slope of a line given two points in algebra class. Then when the teacher asked: *"what is the value of a house with ___ sq ft..."* you could plug in the size and find the value, assuming that the relationship is completely linear. 
@@ -36,7 +36,7 @@ But what happens when we observe a third point that does not fit this linear rel
 * *House 3: 5000 sq ft, $600k*
 
 <p align="center">
-  <img src="/assets/img/linear_regression_backprop/three_pts.png" width="400" />
+  <img src="/assets/images/linear_regression_backprop/three_pts.png" width="400" />
 </p>
 
 8th grade math doesn't cut it any more, it is no longer possible to draw a single line through all 3 points. Unfortunately, very few phenomena in the real world take on a perfectly linear relationship, so we need a systematic way to draw a line that 'best fits' not just 3, but potentially hundreds or thousands of data points. By "best fits", what I really mean is "the line that minimizes the sum of the squared distance from the line to each of the points (i.e. the Mean Squared Error, or MSE)." This is the motivation for Ordinary Least Squares Regression (OLS). We want to teach a computer to measure how "wrong" a specific line is, and find the "least wrong" line.
@@ -205,7 +205,7 @@ plt.show()
 ```
 
 <p align="center">
-  <img src="/assets/img/linear_regression_backprop/output_cell3.png" width="500" />
+  <img src="/assets/images/linear_regression_backprop/output_cell3.png" width="500" />
 </p>
 
 ```python
@@ -241,13 +241,13 @@ plt.show()
 ```
 
 <p align="center">
-  <img src="/assets/img/linear_regression_backprop/output_cell6.png" width="500" />
+  <img src="/assets/images/linear_regression_backprop/output_cell6.png" width="500" />
 </p>
 
 #### "***What if I told you that Linear Regression is just a neural network with only one neuron***..."
 
 <p align="center">
-  <img src="/assets/img/linear_regression_backprop/single_neuron.jpg" width="400" />
+  <img src="/assets/images/linear_regression_backprop/single_neuron.jpg" width="400" />
 </p>
 
 Well, ALMOST... We can see here that besides the sum notation $\Sigma$ and the activation function $f$, our linear equation exactly matches the "cell body".
@@ -621,7 +621,7 @@ plt.show()
 ```
 
 <p align="center">
-  <img src="/assets/img/linear_regression_backprop/output_cell31.png" width="500" />
+  <img src="/assets/images/linear_regression_backprop/output_cell31.png" width="500" />
 </p>
 
 You might be wondering *If the OLS matrix solution allows us to directly solve for the parameters, why bother with pytorch and backpropagation?* 

@@ -8,6 +8,9 @@
   --accent: #0b62d6;
   --border: #e6e8eb;
   --code-bg: #f6f8fa;
+  --serif: Georgia, "Iowan Old Style", "Times New Roman", Times, serif;
+  --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  --mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -27,7 +30,7 @@ body {
   margin: 0;
   background: var(--bg);
   color: var(--fg);
-  font: 17px/1.65 -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  font: 17px/1.65 var(--sans);
 }
 
 a { color: var(--accent); text-decoration: none; }
@@ -43,13 +46,11 @@ a:hover { text-decoration: underline; }
 .nav {
   display: flex;
   align-items: center;
-  justify-content: space-between;
   gap: 16px;
   padding-top: 16px;
   padding-bottom: 16px;
 }
-.nav-brand { font-weight: 700; color: var(--fg); }
-.nav-links a { margin-left: 16px; color: var(--muted); font-size: 15px; }
+.nav-links a { margin-right: 18px; color: var(--muted); font-size: 15px; }
 
 .content { padding-top: 40px; padding-bottom: 64px; }
 
@@ -79,7 +80,7 @@ a:hover { text-decoration: underline; }
 
 /* Post page */
 .post-header { margin-bottom: 32px; }
-.post-header h1 { font-size: 32px; line-height: 1.25; margin-bottom: 6px; }
+.post-header h1 { font-family: var(--serif); font-size: 34px; line-height: 1.25; margin-bottom: 6px; }
 .post-meta { color: var(--muted); font-size: 14px; margin-top: 0; }
 .tag {
   background: var(--code-bg);
@@ -90,7 +91,11 @@ a:hover { text-decoration: underline; }
   margin-right: 6px;
 }
 
-.post-body { font-size: 17px; }
+.post-body {
+  font-family: var(--serif);
+  font-size: 19px;
+  line-height: 1.7;
+}
 .post-body h2 { font-size: 26px; margin: 48px 0 12px; line-height: 1.3; }
 .post-body h3 { font-size: 21px; margin: 40px 0 10px; line-height: 1.35; }
 .post-body h4 { font-size: 18px; margin: 32px 0 8px; }
@@ -119,7 +124,7 @@ a:hover { text-decoration: underline; }
 .post-body pre, .post-body code {
   background: var(--code-bg);
   border-radius: 6px;
-  font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+  font-family: var(--mono);
   font-size: 14px;
 }
 .post-body code { padding: 2px 5px; }
