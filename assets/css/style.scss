@@ -76,6 +76,17 @@ a:hover { text-decoration: underline; }
 .post-list time { display: block; color: var(--muted); font-size: 14px; }
 .post-list a { font-size: 19px; font-weight: 600; }
 .excerpt { margin: 6px 0 0; color: var(--muted); font-size: 15px; }
+.item-title { font-size: 19px; font-weight: 600; }
+.item-tag {
+  margin-left: 8px;
+  color: var(--muted);
+  font-size: 12px;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  vertical-align: 2px;
+}
+.item-links { margin: 8px 0 0; font-size: 14px; }
+.item-links a { margin-right: 14px; font-size: 14px; font-weight: 400; }
 .muted { color: var(--muted); }
 
 /* Post page */

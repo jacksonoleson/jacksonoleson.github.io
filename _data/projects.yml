@@ -1,0 +1,10 @@
+# Projects / research shown on the home page. Delete or edit these entries.
+# Local PDFs go in assets/files/ and are linked as /assets/files/name.pdf
+# The section is hidden entirely while this list is empty.
+
+- title: "Balancing Multiple Fairness Definitions with Adversarial Learning"
+  description: "Extends adversarial debiasing to enforce two incompatible fairness definitions at once via paired adversaries, evaluated on multiple real world and synthetic datasets."
+  date: "2024"
+  links:
+    - text: "PDF"
+      url: /assets/files/Fair_Ethical_ML_Final.pdf

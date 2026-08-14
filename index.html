@@ -13,10 +13,38 @@ layout: default
       {% if site.author.linkedin != "" %}<a href="https://www.linkedin.com/in/{{ site.author.linkedin }}">LinkedIn</a>{% endif %}
       {% if site.author.twitter != "" %}<a href="https://twitter.com/{{ site.author.twitter }}">Twitter</a>{% endif %}
       {% if site.author.email != "" %}<a href="mailto:{{ site.author.email }}">Email</a>{% endif %}
+      {% if site.author.resume != "" %}<a href="{{ site.author.resume | relative_url }}">Résumé (PDF)</a>{% endif %}
       <a href="{{ '/feed.xml' | relative_url }}">RSS</a>
     </p>
   </div>
 </section>
+
+{% if site.data.projects and site.data.projects.size > 0 %}
+<section class="posts">
+  <h2>Projects &amp; Research</h2>
+  <ul class="post-list">
+    {% for project in site.data.projects %}
+      <li>
+        {% if project.date %}<time>{{ project.date }}</time>{% endif %}
+        {% if project.links and project.links.size > 0 %}
+          <a href="{{ project.links[0].url | relative_url }}">{{ project.title }}</a>
+          {% if project.links.size == 1 %}<span class="item-tag">{{ project.links[0].text }}</span>{% endif %}
+        {% else %}
+          <span class="item-title">{{ project.title }}</span>
+        {% endif %}
+        {% if project.description %}<p class="excerpt">{{ project.description }}</p>{% endif %}
+        {% if project.links.size > 1 %}
+          <p class="item-links">
+            {% for link in project.links %}
+              <a href="{{ link.url | relative_url }}">{{ link.text }}</a>
+            {% endfor %}
+          </p>
+        {% endif %}
+      </li>
+    {% endfor %}
+  </ul>
+</section>
+{% endif %}
 
 <section class="posts">
   <h2>Writing</h2>
