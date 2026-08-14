@@ -6,14 +6,13 @@ layout: default
        onerror="this.style.display='none'">
   <div class="profile-text">
     <h1>{{ site.author.name }}</h1>
-    <p class="role">{{ site.author.role }}{% if site.author.location != "" %} · {{ site.author.location }}{% endif %}</p>
+    <p class="role">{{ site.author.role }}{% if site.author.location and site.author.location != "" %} · {{ site.author.location }}{% endif %}</p>
     <p class="bio">{{ site.author.bio }}</p>
     <p class="social">
-      {% if site.author.github != "" %}<a href="https://github.com/{{ site.author.github }}">GitHub</a>{% endif %}
-      {% if site.author.linkedin != "" %}<a href="https://www.linkedin.com/in/{{ site.author.linkedin }}">LinkedIn</a>{% endif %}
-      {% if site.author.twitter != "" %}<a href="https://twitter.com/{{ site.author.twitter }}">Twitter</a>{% endif %}
-      {% if site.author.email != "" %}<a href="mailto:{{ site.author.email }}">Email</a>{% endif %}
-      {% if site.author.resume != "" %}<a href="{{ site.author.resume | relative_url }}">Résumé (PDF)</a>{% endif %}
+      {% if site.author.github and site.author.github != "" %}<a href="https://github.com/{{ site.author.github }}">GitHub</a>{% endif %}
+      {% if site.author.linkedin and site.author.linkedin != "" %}<a href="https://www.linkedin.com/in/{{ site.author.linkedin }}">LinkedIn</a>{% endif %}
+      {% if site.author.twitter and site.author.twitter != "" %}<a href="https://twitter.com/{{ site.author.twitter }}">Twitter</a>{% endif %}
+      {% if site.author.email and site.author.email != "" %}<a href="mailto:{{ site.author.email }}">Email</a>{% endif %}
       <a href="{{ '/feed.xml' | relative_url }}">RSS</a>
     </p>
   </div>
