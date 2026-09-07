@@ -7,17 +7,10 @@ permalink: /blog/
   <ul class="post-list">
     {% for post in site.posts %}
       {% if post.title == "Doing it from Scratch: A Deep Dive into Linear Regression and Backpropagation -- And the Math That Goes With Them" %}
-      <li class="work-card">
-        <a class="work-card-link" href="{{ post.url | relative_url }}" aria-label="Read {{ post.title }}"></a>
-        <div class="entry-main">
-          <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%b %-d, %Y" }}</time>
-          <span class="item-title">{{ post.title }}</span>
-        </div>
-        <div class="entry-secondary">
-          {% if post.description %}<p class="excerpt">{{ post.description }}</p>
-          {% else %}<p class="excerpt">{{ post.excerpt | strip_html | truncate: 180 }}</p>{% endif %}
-        </div>
-      </li>
+      {% assign post_date = post.date | date: "%b %-d, %Y" %}
+      {% assign post_datetime = post.date | date_to_xmlschema %}
+      {% if post.description %}{% assign post_description = post.description %}{% else %}{% assign post_description = post.excerpt | strip_html | truncate: 180 %}{% endif %}
+      {% include work-card.html title=post.title date=post_date datetime=post_datetime description=post_description url=post.url %}
       {% endif %}
     {% endfor %}
   </ul>

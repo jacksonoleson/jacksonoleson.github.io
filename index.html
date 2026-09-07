@@ -35,25 +35,8 @@ layout: default
 <section id="projects" class="posts">
   <ul class="post-list">
     {% for project in site.data.projects %}
-      <li class="work-card">
-        {% if project.links and project.links.size > 0 %}<a class="work-card-link" href="{{ project.links[0].url | relative_url }}" aria-label="Open {{ project.title }}"></a>{% endif %}
-        <div class="entry-main">
-          {% if project.date %}<time>{{ project.date }}</time>{% endif %}
-          {% if project.links and project.links.size > 0 %}
-            <span class="item-title">{{ project.title }}</span>
-          {% else %}
-            <span class="item-title">{{ project.title }}</span>
-          {% endif %}
-          {% if project.links.size > 1 %}
-            <p class="item-links">
-              {% for link in project.links %}
-                <a href="{{ link.url | relative_url }}">{{ link.text }}</a>
-              {% endfor %}
-            </p>
-          {% endif %}
-        </div>
-        {% if project.description %}<div class="entry-secondary"><p class="excerpt">{{ project.description }}</p></div>{% endif %}
-      </li>
+      {% assign project_url = project.links[0].url %}
+      {% include work-card.html title=project.title date=project.date description=project.description url=project_url %}
     {% endfor %}
   </ul>
 </section>
@@ -65,17 +48,10 @@ layout: default
   {% endif %}
   <ul class="post-list">
     {% for post in site.posts %}
-      <li class="work-card">
-        <a class="work-card-link" href="{{ post.url | relative_url }}" aria-label="Read {{ post.title }}"></a>
-        <div class="entry-main">
-          <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%b %-d, %Y" }}</time>
-          <span class="item-title">{{ post.title }}</span>
-        </div>
-        <div class="entry-secondary">
-          {% if post.description %}<p class="excerpt">{{ post.description }}</p>
-          {% else %}<p class="excerpt">{{ post.excerpt | strip_html | truncate: 180 }}</p>{% endif %}
-        </div>
-      </li>
+      {% assign post_date = post.date | date: "%b %-d, %Y" %}
+      {% assign post_datetime = post.date | date_to_xmlschema %}
+      {% if post.description %}{% assign post_description = post.description %}{% else %}{% assign post_description = post.excerpt | strip_html | truncate: 180 %}{% endif %}
+      {% include work-card.html title=post.title date=post_date datetime=post_datetime description=post_description url=post.url %}
     {% endfor %}
   </ul>
 </section>

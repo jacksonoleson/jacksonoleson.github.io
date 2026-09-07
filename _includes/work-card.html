@@ -1,0 +1,8 @@
+<li class="work-card">
+  {% if include.url %}<a class="work-card-link" href="{{ include.url | relative_url }}"{% if include.external %} target="_blank" rel="noopener noreferrer"{% endif %} aria-label="Open {{ include.title }}"></a>{% endif %}
+  <div class="entry-main">
+    {% if include.date %}<time{% if include.datetime %} datetime="{{ include.datetime }}"{% endif %}>{{ include.date }}</time>{% endif %}
+    <span class="item-title">{{ include.title }}</span>
+  </div>
+  {% if include.description %}<div class="entry-secondary"><p class="excerpt">{{ include.description }}</p></div>{% endif %}
+</li>
