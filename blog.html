@@ -4,13 +4,21 @@ title: Blog
 permalink: /blog/
 ---
 <div class="page">
-  <h1>Blog</h1>
   <ul class="post-list">
     {% for post in site.posts %}
-      <li>
-        <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%b %-d, %Y" }}</time>
-        <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+      {% if post.title == "Doing it from Scratch: A Deep Dive into Linear Regression and Backpropagation -- And the Math That Goes With Them" %}
+      <li class="work-card">
+        <a class="work-card-link" href="{{ post.url | relative_url }}" aria-label="Read {{ post.title }}"></a>
+        <div class="entry-main">
+          <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%b %-d, %Y" }}</time>
+          <span class="item-title">{{ post.title }}</span>
+        </div>
+        <div class="entry-secondary">
+          {% if post.description %}<p class="excerpt">{{ post.description }}</p>
+          {% else %}<p class="excerpt">{{ post.excerpt | strip_html | truncate: 180 }}</p>{% endif %}
+        </div>
       </li>
+      {% endif %}
     {% endfor %}
   </ul>
 </div>

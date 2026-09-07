@@ -18,45 +18,63 @@ layout: default
   </div>
 </section>
 
+<section id="research" class="featured-publication" aria-labelledby="featured-publication-title">
+  <div class="publication-card glass-surface">
+    <a class="work-card-link" href="https://link.springer.com/article/10.1007/s11009-026-10310-w" target="_blank" rel="noopener noreferrer" aria-label="Open Flexibly Incorporating Prior Information Into Subset Scan Statistics"></a>
+    <div class="publication-main">
+      <time class="publication-date" datetime="2026-08-20">August 20, 2026</time>
+      <h2 id="featured-publication-title">Flexibly Incorporating Prior Information Into Subset Scan Statistics</h2>
+    </div>
+    <div class="publication-abstract">
+      <p>We propose the matched filter subset scan (MFSS), a new approach for flexibly incorporating prior information into subset scanning while maintaining computational efficiency. MFSS encodes structured information about which subsets of the data are a priori more likely by (i) defining a set of subsets (the “filter set” Θ) that collectively describe what we expect the true signal to look like; and (ii) optimizing a penalized log-likelihood ratio statistic, where the penalty is proportional to the Hamming distance to the nearest filter in Θ. We demonstrate that this approach maintains computational efficiency and exact detection of the highest-scoring subset for small-sized filter sets, and present initial results for scaling to larger-sized filter sets. Finally, we prove several theoretical results, including asymptotic identification of the correct filter and asymptotic improvement in detection accuracy, under reasonable simplifying assumptions.</p>
+    </div>
+  </div>
+</section>
+
 {% if site.data.projects and site.data.projects.size > 0 %}
-<section class="posts">
-  <h2>Projects &amp; Research</h2>
+<section id="projects" class="posts">
   <ul class="post-list">
     {% for project in site.data.projects %}
-      <li>
-        {% if project.date %}<time>{{ project.date }}</time>{% endif %}
-        {% if project.links and project.links.size > 0 %}
-          <a href="{{ project.links[0].url | relative_url }}">{{ project.title }}</a>
-          {% if project.links.size == 1 %}<span class="item-tag">{{ project.links[0].text }}</span>{% endif %}
-        {% else %}
-          <span class="item-title">{{ project.title }}</span>
-        {% endif %}
-        {% if project.description %}<p class="excerpt">{{ project.description }}</p>{% endif %}
-        {% if project.links.size > 1 %}
-          <p class="item-links">
-            {% for link in project.links %}
-              <a href="{{ link.url | relative_url }}">{{ link.text }}</a>
-            {% endfor %}
-          </p>
-        {% endif %}
+      <li class="work-card">
+        {% if project.links and project.links.size > 0 %}<a class="work-card-link" href="{{ project.links[0].url | relative_url }}" aria-label="Open {{ project.title }}"></a>{% endif %}
+        <div class="entry-main">
+          {% if project.date %}<time>{{ project.date }}</time>{% endif %}
+          {% if project.links and project.links.size > 0 %}
+            <span class="item-title">{{ project.title }}</span>
+          {% else %}
+            <span class="item-title">{{ project.title }}</span>
+          {% endif %}
+          {% if project.links.size > 1 %}
+            <p class="item-links">
+              {% for link in project.links %}
+                <a href="{{ link.url | relative_url }}">{{ link.text }}</a>
+              {% endfor %}
+            </p>
+          {% endif %}
+        </div>
+        {% if project.description %}<div class="entry-secondary"><p class="excerpt">{{ project.description }}</p></div>{% endif %}
       </li>
     {% endfor %}
   </ul>
 </section>
 {% endif %}
 
-<section class="posts">
-  <h2>Writing</h2>
+<section id="writing" class="posts">
   {% if site.posts.size == 0 %}
     <p class="muted">No posts yet.</p>
   {% endif %}
   <ul class="post-list">
     {% for post in site.posts %}
-      <li>
-        <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%b %-d, %Y" }}</time>
-        <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
-        {% if post.description %}<p class="excerpt">{{ post.description }}</p>
-        {% else %}<p class="excerpt">{{ post.excerpt | strip_html | truncate: 180 }}</p>{% endif %}
+      <li class="work-card">
+        <a class="work-card-link" href="{{ post.url | relative_url }}" aria-label="Read {{ post.title }}"></a>
+        <div class="entry-main">
+          <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%b %-d, %Y" }}</time>
+          <span class="item-title">{{ post.title }}</span>
+        </div>
+        <div class="entry-secondary">
+          {% if post.description %}<p class="excerpt">{{ post.description }}</p>
+          {% else %}<p class="excerpt">{{ post.excerpt | strip_html | truncate: 180 }}</p>{% endif %}
+        </div>
       </li>
     {% endfor %}
   </ul>

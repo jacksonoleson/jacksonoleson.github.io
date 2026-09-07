@@ -4,7 +4,7 @@
 
 - title: "Balancing Multiple Fairness Definitions with Adversarial Learning"
   description: "Extends adversarial debiasing to enforce two incompatible fairness definitions at once via paired adversaries, evaluated on multiple real world and synthetic datasets."
-  date: "2024"
+  date: "December 13, 2024"
   links:
     - text: "PDF"
       url: /assets/files/Fair_Ethical_ML_Final.pdf

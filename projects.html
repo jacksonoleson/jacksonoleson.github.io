@@ -1,0 +1,26 @@
+---
+layout: default
+title: Projects
+permalink: /projects/
+---
+<section class="posts project-page">
+  <ul class="post-list">
+    {% for project in site.data.projects %}
+      {% if project.title == "Balancing Multiple Fairness Definitions with Adversarial Learning" %}
+      <li class="work-card">
+        {% if project.links and project.links.size > 0 %}<a class="work-card-link" href="{{ project.links[0].url | relative_url }}" aria-label="Open {{ project.title }}"></a>{% endif %}
+        <div class="entry-main">
+          {% if project.date %}<time>{{ project.date }}</time>{% endif %}
+          <span class="item-title">{{ project.title }}</span>
+          {% if project.links.size > 1 %}
+            <p class="item-links">
+              {% for link in project.links %}<a href="{{ link.url | relative_url }}">{{ link.text }}</a>{% endfor %}
+            </p>
+          {% endif %}
+        </div>
+        {% if project.description %}<div class="entry-secondary"><p class="excerpt">{{ project.description }}</p></div>{% endif %}
+      </li>
+      {% endif %}
+    {% endfor %}
+  </ul>
+</section>
