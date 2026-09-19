@@ -185,6 +185,9 @@ body.theme-ai-portfolio .publication-card,
 body.theme-ai-portfolio .post-list li,
 body.theme-ai-portfolio .post,
 body.theme-ai-portfolio .experience-card { border-radius: 12px; background: var(--bg); box-shadow: none; }
+body.theme-ai-portfolio .publication-main h1,
+body.theme-ai-portfolio .publication-main h2,
+body.theme-ai-portfolio .publication-abstract { max-width: none; }
 body.theme-ai-portfolio .post-list li:hover { border-color: color-mix(in srgb, var(--accent) 45%, var(--border)); }
 body.theme-ai-portfolio .animation-controls { display: none !important; }
 body.theme-ai-portfolio .experience { margin-top: 78px; }
