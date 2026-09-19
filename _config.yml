@@ -2,6 +2,10 @@ title: Jackson Oleson
 tagline: "Stream of Consciousness"
 description: "I write technical content, mostly about AI and human psychology."
 
+# Visual shell only: switch this value to neural, midnight, editorial, or ai-portfolio.
+# Your posts, research, and project content stay the same.
+site_template: ai-portfolio
+
 # Shown on the home page. Edit these freely.
 author:
   name: Jackson Oleson
@@ -14,7 +18,7 @@ author:
   location: ""
   email: ""
   github: jacksonoleson
-  linkedin: ""
+  linkedin: "jackson-oleson-234010205"
   twitter: ""
 
 url: "https://jacksonoleson.github.io"

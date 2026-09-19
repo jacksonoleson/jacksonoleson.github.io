@@ -17,8 +17,47 @@ layout: default
     </p>
   </div>
 </section>
+<div class="animation-controls" hidden>
+  <label for="animation-style">Background</label>
+  <select id="animation-style">
+    <option value="neural">Neural network</option>
+    <option value="binary">Binary flow</option>
+    <option value="off">Off</option>
+  </select>
+  <button type="button" class="animation-pause" aria-pressed="false" aria-label="Pause background animation">Pause</button>
+</div>
+
+<section id="experience" class="experience" aria-labelledby="experience-title">
+  <h2 id="experience-title">Experience</h2>
+  <div class="experience-card glass-surface">
+    <div class="experience-groups">
+      {% for group in site.data.experience %}
+      <section class="experience-group" aria-labelledby="{{ group.id }}-title">
+        <h3 class="experience-group-title" id="{{ group.id }}-title">{{ group.title }}</h3>
+        <ol class="experience-list">
+          {% for role in group.roles %}
+          <li>
+            <p class="experience-period">{{ role.period }}</p>
+            <span class="experience-mark" aria-hidden="true">{{ role.initials }}</span>
+            <div>
+              <h4>{{ role.company }}{% if role.role and role.role != "" %} <span>· {{ role.role }}</span>{% endif %}</h4>
+              {% if role.highlights and role.highlights.size > 0 %}
+              <ul>
+                {% for highlight in role.highlights %}<li>{{ highlight }}</li>{% endfor %}
+              </ul>
+              {% endif %}
+            </div>
+          </li>
+          {% endfor %}
+        </ol>
+      </section>
+      {% endfor %}
+    </div>
+  </div>
+</section>
 
 <section id="research" class="featured-publication" aria-labelledby="featured-publication-title">
+  <h2 class="featured-work-heading">Featured Work:</h2>
   <div class="publication-card glass-surface">
     <a class="work-card-link" href="https://link.springer.com/article/10.1007/s11009-026-10310-w" target="_blank" rel="noopener noreferrer" aria-label="Open Flexibly Incorporating Prior Information Into Subset Scan Statistics"></a>
     <div class="publication-main">

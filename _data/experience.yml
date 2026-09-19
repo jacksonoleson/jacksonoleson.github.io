@@ -1,0 +1,68 @@
+- id: professional-experience
+  title: Professional Experience
+  roles:
+    - period: "April 2025 — Present"
+      initials: "LH"
+      company: "Littlehorse.io"
+      role: "AI Engineer"
+      highlights:
+        - "Designing a production-ready agent orchestration platform to enhance the LittleHorse platform."
+        - "Developed and deployed customer solutions resulting in six-figure ARR."
+        - "Built and shipped an MCP server to integrate natural language and workflow automation."
+    - period: "May 2024 — August 2024"
+      initials: "C"
+      company: "Cerniam"
+      role: "Machine Learning Engineer"
+      highlights:
+        - "Developed Small Language Models for real-time domain-specific recommendations across heterogeneous data streams; implemented retrieval with knowledge graphs for more holistic answers."
+        - "Explored RNN implementations to retain temporal context and enhance recommendation accuracy."
+    - period: "January 2024 — August 2024"
+      initials: "AP"
+      company: "AlphaPlay AI"
+      role: "Machine Learning Engineer"
+      highlights:
+        - "Designed reinforcement learning environments to better train ML algorithms that assist human decision makers."
+        - "Fine-tuned LLMs for data-driven NHL analytics."
+        - "Credited in the 2024 MIT Sloan Sports Analytics Conference."
+    - period: "May 2022 — September 2022"
+      initials: "BP"
+      company: "Basis Point Global Solutions"
+      role: "Quantitative Analyst"
+      highlights:
+        - "Developed a systematic buy-side trading framework by engineering a data pipeline for S&P 500 fundamentals."
+        - "Implemented rigorous significance testing and adjusted for historical survivorship bias to eliminate performance inflation."
+- id: research-experience
+  title: Research Experience
+  roles:
+    - period: "September 2022 — May 2025"
+      initials: "ML"
+      company: "Machine Learning 4 Good Laboratory"
+      role: "Research Scientist"
+      highlights:
+        - "Published Matched Filter Subset Scan in the Methodology and Computing in Applied Probability Journal for 2026."
+        - "Developed an unsupervised learning algorithm to enhance clustering methods like K-Means for fair spatial resource allocation; this research culminated in a lead-author paper submitted to AAAI 2027."
+        - "Created a flexible, efficient algorithm for anomalous pattern detection in high-dimensional spatiotemporal data and presented research quarterly to 20+ faculty, postdocs, and students from NYU, Columbia, Harvard, and Notre Dame."
+        - "Invited to serve as a distinguished speaker at Advances in Clinical and Cellular Immunology 2026 and Infections Diseases and Antimicrobial Resistance 2027."
+- id: education
+  title: Education
+  roles:
+    - period: "May 2025"
+      initials: "NYU"
+      company: "New York University"
+      role: "M.S. Computer Science — Artificial Intelligence and Machine Learning"
+      highlights:
+        - "GPA: 3.9 · Honors: NYU Hockey All-Academic Team."
+    - period: "May 2023"
+      initials: "NYU"
+      company: "New York University"
+      role: "B.A. Applied Mathematics"
+      highlights: []
+- id: additional-information
+  title: Additional Information
+  roles:
+    - period: "September 2021 — March 2025"
+      initials: "NYU"
+      company: "NYU Ice Hockey"
+      highlights:
+        - "All-time scoring record holder among defensemen at NYU; all-time leader in games played."
+        - "Voted Rookie of the Year in 2022 and Defenseman of the Year in 2025; elected team captain for 2024–25."

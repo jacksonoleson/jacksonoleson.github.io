@@ -1,0 +1,12 @@
+- id: neural
+  name: Neural Field
+  description: Soft neutral cards with an animated node field in the surrounding space.
+- id: midnight
+  name: Midnight Signal
+  description: A dark, high-contrast technical shell with blue signal accents.
+- id: editorial
+  name: Editorial Paper
+  description: A warm, print-inspired shell with squared cards and terracotta accents.
+- id: ai-portfolio
+  name: AI Portfolio
+  description: A clean, full-bleed AI portfolio with a social header, color-mode toggle, and animated hero field.
