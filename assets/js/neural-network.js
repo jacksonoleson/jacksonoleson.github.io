@@ -1,6 +1,32 @@
 (() => {
   const canvas = document.querySelector('.neural-network');
-  if (!canvas) return;
+  if (!canvas) {
+    const button = document.querySelector('.template-theme-toggle');
+    if (!button) return;
+    const key = 'ai-portfolio-color-mode';
+    const scheme = window.matchMedia('(prefers-color-scheme: dark)');
+    try {
+      const mode = window.localStorage.getItem(key);
+      if (mode === 'light' || mode === 'dark') document.documentElement.dataset.colorMode = mode;
+    } catch (_) { /* System color preference remains available. */ }
+    const updateButton = () => {
+      const dark = document.documentElement.dataset.colorMode === 'dark'
+        || (!document.documentElement.dataset.colorMode && scheme.matches);
+      button.dataset.mode = dark ? 'dark' : 'light';
+      button.setAttribute('aria-label', dark ? 'Switch to light mode' : 'Switch to dark mode');
+    };
+    button.addEventListener('click', () => {
+      const dark = document.documentElement.dataset.colorMode === 'dark'
+        || (!document.documentElement.dataset.colorMode && scheme.matches);
+      const mode = dark ? 'light' : 'dark';
+      document.documentElement.dataset.colorMode = mode;
+      try { window.localStorage.setItem(key, mode); } catch (_) { /* This is a visual preference only. */ }
+      updateButton();
+    });
+    scheme.addEventListener('change', updateButton);
+    updateButton();
+    return;
+  }
 
   const context = canvas.getContext('2d');
   if (!context) return;
@@ -25,11 +51,13 @@
   let mono;
   let paused = false;
   let style = 'neural';
+  let updateColorModeButton = () => {};
 
   // Each style owns its particles; the shared controller owns motion and sizing.
   // Add a factory here and an option in the selector to collect more styles.
   const styles = new Map([
     ['neural', createNeuralNetwork],
+    ['starfield', createStarfield],
     ['binary', createBinaryFlow],
     ['off', () => ({ resize() {}, update() {}, draw() {} })]
   ]);
@@ -45,7 +73,14 @@
   // The AI portfolio deliberately uses its neural field; experimental modes
   // remain available on the other templates without changing this visual shell.
   if (document.body.classList.contains('theme-ai-portfolio')) {
-    style = 'neural';
+    try {
+      const mode = window.localStorage.getItem(colorModeKey);
+      if (mode === 'light' || mode === 'dark') document.documentElement.dataset.colorMode = mode;
+    } catch (_) { /* System color preference remains available. */ }
+    style = document.documentElement.dataset.colorMode === 'dark'
+      || (!document.documentElement.dataset.colorMode && colorScheme.matches)
+      ? 'starfield'
+      : 'neural';
     paused = false;
   }
 
@@ -204,6 +239,55 @@
     };
   }
 
+  function createStarfield() {
+    const stars = [];
+    return {
+      resize() {
+        stars.length = 0;
+        const count = Math.max(70, Math.min(150, Math.round(width * height / 4200)));
+        for (let index = 0; index < count; index += 1) {
+          stars.push({
+            x: Math.random() * width,
+            y: Math.random() * height,
+            size: .45 + Math.random() * 1.45,
+            speed: .06 + Math.random() * .24,
+            phase: Math.random() * Math.PI * 2
+          });
+        }
+      },
+      update(delta) {
+        stars.forEach((star) => {
+          star.y += star.speed * delta * 60;
+          star.phase += delta * (1.1 + star.speed * 2);
+          if (star.y > height + 3) {
+            star.y = -3;
+            star.x = Math.random() * width;
+          }
+        });
+      },
+      draw() {
+        context.fillStyle = '#81f5a7';
+        context.strokeStyle = '#52d982';
+        context.shadowColor = '#5dff91';
+        context.shadowBlur = 7;
+        stars.forEach((star) => {
+          const brightness = .18 + (Math.sin(star.phase) + 1) * .16;
+          context.globalAlpha = brightness * .5;
+          context.lineWidth = Math.max(.45, star.size * .55);
+          context.beginPath();
+          context.moveTo(star.x, star.y - star.speed * 34);
+          context.lineTo(star.x, star.y);
+          context.stroke();
+          context.globalAlpha = brightness;
+          context.beginPath();
+          context.arc(star.x, star.y, star.size, 0, Math.PI * 2);
+          context.fill();
+        });
+        context.shadowBlur = 0;
+      }
+    };
+  }
+
   function readColors() {
     const computed = getComputedStyle(document.body);
     accent = computed.getPropertyValue('--accent').trim() || '#3159b8';
@@ -302,11 +386,17 @@
     let mode;
     try { mode = window.localStorage.getItem(colorModeKey); } catch (_) { /* System mode remains available. */ }
     if (mode === 'light' || mode === 'dark') document.documentElement.dataset.colorMode = mode;
-    const updateColorModeButton = () => {
+    updateColorModeButton = () => {
       const dark = document.documentElement.dataset.colorMode === 'dark'
         || (!document.documentElement.dataset.colorMode && colorScheme.matches);
-      colorModeButton.textContent = dark ? 'Light' : 'Dark';
+      colorModeButton.dataset.mode = dark ? 'dark' : 'light';
       colorModeButton.setAttribute('aria-label', dark ? 'Switch to light mode' : 'Switch to dark mode');
+      const nextStyle = dark ? 'starfield' : 'neural';
+      if (isAiPortfolio && style !== nextStyle) {
+        style = nextStyle;
+        animation = styles.get(style)();
+        if (width && height) animation.resize();
+      }
       readColors();
       draw();
     };
@@ -335,8 +425,7 @@
   }
   reduceMotion.addEventListener('change', updateMotion);
   colorScheme.addEventListener('change', () => {
-    readColors();
-    draw();
+    updateColorModeButton();
   });
   document.addEventListener('visibilitychange', updateMotion);
   resize();

@@ -130,17 +130,23 @@ body.theme-ai-portfolio { font-size: 16px; }
 body.theme-ai-portfolio .portfolio-nav { max-width: 760px; justify-content: space-between; }
 .portfolio-left, .portfolio-links, .portfolio-actions { display: flex; align-items: center; }
 .portfolio-left { gap: 22px; }
-.portfolio-links, .portfolio-actions { gap: 18px; }
+.portfolio-links { gap: 18px; }
+.portfolio-actions { gap: 6px; }
 .portfolio-brand { color: var(--fg); font-size: 14px; font-weight: 700; letter-spacing: -.02em; white-space: nowrap; }
 .portfolio-brand:hover { color: var(--accent); text-decoration: none; }
 .portfolio-links a, .portfolio-actions a, .template-theme-toggle { color: var(--muted); font: 14px/1 var(--sans); }
-.portfolio-links a:hover,
-.portfolio-actions a:hover { color: var(--accent); text-decoration: none; }
-.social-icon { display: inline-flex; width: 20px; height: 20px; }
+.portfolio-links a:hover { color: var(--accent); text-decoration: none; }
+.social-icon { display: inline-flex; width: 32px; height: 32px; padding: 6px; border-radius: 7px; color: var(--muted); transition: background-color .16s ease; }
 .social-icon svg { width: 100%; height: 100%; }
 .linkedin-icon svg { transform: scale(1.25); }
-.template-theme-toggle { padding: 7px 9px; border: 1px solid var(--border); border-radius: 7px; background: transparent; cursor: pointer; }
-.template-theme-toggle:hover { border-color: var(--accent); color: var(--accent); }
+.social-icon:hover { color: var(--muted) !important; background: color-mix(in srgb, var(--fg) 9%, transparent); text-decoration: none; }
+.template-theme-toggle { display: inline-grid; place-items: center; width: 32px; height: 32px; padding: 0; border: 0; border-radius: 7px; background: transparent; color: var(--muted); cursor: pointer; }
+.template-theme-toggle:hover { background: color-mix(in srgb, var(--fg) 9%, transparent); color: var(--muted); }
+.theme-icon { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+.theme-icon-sun { display: none; }
+.template-theme-toggle[data-mode="dark"] .theme-icon-sun { display: block; }
+.template-theme-toggle[data-mode="dark"] .theme-icon-moon { display: none; }
+.visually-hidden { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
 body.theme-ai-portfolio .content { max-width: none; padding: 0 0 64px; }
 body.theme-ai-portfolio .page,
 body.theme-ai-portfolio .content > .featured-publication,
